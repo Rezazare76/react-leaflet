@@ -11,6 +11,7 @@ const MapLocation: React.FC<MapLocationProps> = ({
 }) => {
   const originRef = useRef<LeafletMarker | null>(null);
   const destination = useRef<LeafletMarker | null>(null);
+  // change marker icn
   const originIcon = new L.Icon({
     iconUrl: markerRed,
     iconSize: [50, 64],
@@ -19,17 +20,7 @@ const MapLocation: React.FC<MapLocationProps> = ({
     iconUrl: markerGreen,
     iconSize: [50, 64],
   });
-  // find current position
-  // const map = useMapEvents({
-  //   click() {
-  //     map.locate();
-  //   },
-  //   locationfound(e) {
-  //     setPosition(e.latlng);
-  //     map.flyTo(e.latlng, map.getZoom());
-  //   },
-  // });
-
+  // event for add markers "only to marker"
   useMapEvent("click", (event) => {
     const { latlng } = event;
     if (!selections?.origin) {
@@ -42,9 +33,9 @@ const MapLocation: React.FC<MapLocationProps> = ({
     }
   });
 
+  // make marker draggable
   function dragend(markerId: string, target: L.LeafletEvent) {
     const { _latlng } = target;
-
     if (markerId == "origin") {
       setSelections((prev) => ({ ...prev, origin: _latlng }));
     } else if (markerId == "destination") {

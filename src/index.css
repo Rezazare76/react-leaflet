@@ -13,7 +13,6 @@ body {
   --primary: #34454c;
   --secondary: white;
   --tertiary: #07a889;
-  --dark: #0a192f;
   --gray: #edebeb;
   --light-gray: #ccc;
   --success: #30cc73;
@@ -68,18 +67,11 @@ button {
 .text-secondary {
   color: var(--secondary);
 }
-.text-tertiary {
-  color: var(--tertiary);
-}
-.text-success {
-  color: var(--success);
-}
 .text-danger {
   color: var(--danger);
 }
-.glass {
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(1px);
+.text-success {
+  color: var(--success);
 }
 .cursor-pointer {
   cursor: pointer;
@@ -96,35 +88,18 @@ button {
 .position-fixed {
   position: fixed;
 }
-.d-inline-block {
-  display: inline-block;
-}
 .d-flex {
   display: flex;
 }
 .flex-column {
   flex-direction: column;
 }
-.flex-row-reverse {
-  flex-direction: row-reverse;
-}
 .align-items-center {
   align-items: center;
 }
-.align-items-end {
-  align-items: end;
-}
+
 .justify-content-center {
   justify-content: center;
-}
-.justify-content-between {
-  justify-content: space-between;
-}
-.justify-content-end {
-  justify-content: end;
-}
-.justify-content-around {
-  justify-content: space-around;
 }
 
 .overflow-hidden {
@@ -147,12 +122,6 @@ button {
 }
 .text-center {
   text-align: center;
-}
-.text-nowrap {
-  white-space: nowrap;
-}
-.text-left {
-  text-align: left;
 }
 .transition {
   transition: all 0.5s;
@@ -178,28 +147,11 @@ button {
 .rounded-4 {
   border-radius: 20px;
 }
-.rounded-3-right {
-  border-top-right-radius: 13px;
-  border-bottom-right-radius: 13px;
-}
-
 .rounded-3-top {
   border-top-right-radius: 13px;
   border-top-left-radius: 13px;
 }
-.rounded-top-0 {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-.translate {
-  transform: translate(-50%);
-}
-h3 {
-  margin-top: 0;
-}
-.object-cover {
-  object-fit: cover;
-}
+
 .p-1 {
   padding: 0.5rem;
 }

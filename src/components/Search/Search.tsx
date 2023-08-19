@@ -10,7 +10,7 @@ const Search: React.FC<SearchProps> = ({ setVehicleType }) => {
     setInputValue(target.value);
     setVehicle([]);
   };
-
+  // fetch vehicle api 'query-string'
   useEffect(() => {
     const fetchVehicles = async () => {
       try {
@@ -25,7 +25,7 @@ const Search: React.FC<SearchProps> = ({ setVehicleType }) => {
 
           if (response.ok) {
             const { data } = await response.json();
-            setTimeout(() => setVehicle(data), 300);
+            setVehicle(data);
           }
         } else {
           setVehicle([]);

@@ -16,10 +16,6 @@ const MapView = () => {
     if (!token) navigate("/");
   }, [navigate]);
   const sendRequest = async () => {
-    console.log(JSON.parse(localStorage.getItem("token") || "")?.token);
-    console.log(`${selections.origin.lat}, ${selections.origin.lng}`);
-    console.log(`${selections.destination.lat}, ${selections.destination.lng}`);
-
     try {
       const response = await fetch(
         "https://exam.pishgamanasia.com/webapi/Request/SendRequest",

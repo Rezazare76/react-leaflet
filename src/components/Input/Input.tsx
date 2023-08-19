@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 import InputProps from "../../interfaces/Input";
 import "./Input.scss";
 const Input: React.FC<InputProps> = ({
@@ -30,4 +30,4 @@ const Input: React.FC<InputProps> = ({
     </section>
   );
 };
-export default Input;
+export default memo(Input);
