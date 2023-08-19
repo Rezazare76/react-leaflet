@@ -1,0 +1,59 @@
+.login {
+  flex-grow: 1;
+  .login-section {
+    box-shadow: 0 0 10px var(--light-gray);
+    &.error {
+      box-shadow: 0 0 41px var(--danger);
+      button {
+        background-color: var(--danger);
+      }
+    }
+    & > span {
+      text-shadow: 1px 1px 2px;
+    }
+    button {
+      border: none;
+      margin-top: 1rem;
+      box-shadow: 0 0 10px var(--primary);
+      &:hover {
+        box-shadow: 0 0 10px 1px var(--primary);
+      }
+      &.not-allow:hover {
+        box-shadow: 0 0 10px 1px var(--gray);
+      }
+      .loading {
+        left: 29%;
+        top: 15%;
+        transform: translate(-50%, -50%);
+        &.true {
+          animation: loading 1s linear infinite;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 600px) {
+  .login {
+    .login-section {
+      width: 260px;
+    }
+    .loading {
+      left: 15% !important;
+    }
+  }
+}
+@media screen and (min-width: 600px) {
+  .login {
+    .login-section {
+      width: 400px;
+    }
+  }
+}
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

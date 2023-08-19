@@ -1,0 +1,14 @@
+.alert {
+  z-index: 2;
+  left: -310px;
+  top: 40px;
+  width: 280px;
+  height: 55px;
+  border-left: 5px solid var(--danger);
+  &.true {
+    left: 0;
+  }
+  &.success {
+    border-color: var(--success);
+  }
+}

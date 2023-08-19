@@ -1,0 +1,21 @@
+.map-panel {
+  bottom: -115px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 300px;
+  button {
+    border: none;
+    margin: 0.5rem 0;
+  }
+}
+@media screen and (max-width: 300px) {
+  .map-panel {
+    width: 250px;
+  }
+}
+@media screen and (min-width: 600px) {
+  .map-panel {
+    width: 500px;
+  }
+}
