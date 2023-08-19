@@ -9,6 +9,8 @@ const MapView = () => {
   const [selections, setSelections] = useState({});
   const [vehicleType, setVehicleType] = useState<number | undefined>();
   const [alert, setAlert] = useState<string>("");
+  const [isLoading, setIsLoading] = useState(false);
+
   // bc i don't have access to  the server for set time out for token this way is simple i used
   const navigate = useNavigate();
   useEffect(() => {
@@ -17,6 +19,7 @@ const MapView = () => {
   }, [navigate]);
   const sendRequest = async () => {
     try {
+      setIsLoading(true);
       const response = await fetch(
         "https://exam.pishgamanasia.com/webapi/Request/SendRequest",
         {
@@ -40,8 +43,10 @@ const MapView = () => {
           setAlert("");
         }, 2000);
       }
+      setIsLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
+      setIsLoading(false);
     }
   };
   return (
@@ -64,6 +69,7 @@ const MapView = () => {
         selections={selections}
         vehicleType={vehicleType}
         sendRequest={sendRequest}
+        isLoading={isLoading}
       >
         <Search setVehicleType={setVehicleType} />
       </MapPanel>

@@ -39,14 +39,10 @@ const Login: React.FC = () => {
         ).then((response) => response.json());
         if (response.status) {
           setLoginState(response.data.userToken);
-          const expirationTime = new Date();
-          // add 24 hour expire for user login it should handle in server but i don't have access
-          expirationTime.setHours(expirationTime.getHours() + 24);
           localStorage.setItem(
             "token",
             JSON.stringify({
               token: response.data.userToken,
-              expire: expirationTime.toString(),
             })
           );
           setIsLoading(false);

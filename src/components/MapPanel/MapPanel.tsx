@@ -7,6 +7,7 @@ const MapPanel: React.FC<MapPanelProps> = ({
   selections,
   vehicleType,
   sendRequest,
+  isLoading,
 }) => {
   const state =
     selections.origin?.lat && selections.destination?.lat && vehicleType;
@@ -34,7 +35,7 @@ const MapPanel: React.FC<MapPanelProps> = ({
         }`}
         onClick={state && sendRequest}
       >
-        ثبت درخواست
+        {isLoading ? "درحال ثبت درخواست..." : "ثبت درخواست"}
       </button>
     </section>
   );

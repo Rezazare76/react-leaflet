@@ -9,4 +9,5 @@ export default interface MapPanelProps {
   };
   vehicleType?: number;
   sendRequest: () => void;
+  isLoading?: boolean;
 }
