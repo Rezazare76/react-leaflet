@@ -23,47 +23,57 @@ const MapLocation: React.FC<MapLocationProps> = ({
   // event for add markers "only to marker"
   useMapEvent("click", (event) => {
     const { latlng } = event;
-    if (!selections?.origin) {
-      setSelections((prev) => ({ ...prev, origin: latlng }));
-    } else if (!selections?.destination) {
+
+    if (!selections.origin?.[0]) {
+      setSelections((prev) => ({ ...prev, origin: [latlng.lat, latlng.lng] }));
+    } else if (!selections?.destination?.[0]) {
       setSelections((prev) => ({
         ...prev,
-        destination: latlng,
+        destination: [latlng.lat, latlng.lng],
       }));
     }
   });
 
   // make marker draggable
-  function dragend(markerId: string, target: L.LeafletEvent) {
-    const { _latlng } = target;
+  function dragend(markerId: string, event: L.DragEndEvent) {
+    const latlng = event.target._latlng;
     if (markerId == "origin") {
-      setSelections((prev) => ({ ...prev, origin: _latlng }));
+      setSelections((prev) => ({ ...prev, origin: [latlng.lat, latlng.lng] }));
     } else if (markerId == "destination") {
-      setSelections((prev) => ({ ...prev, destination: _latlng }));
+      setSelections((prev) => ({
+        ...prev,
+        destination: [latlng.lat, latlng.lng],
+      }));
     }
   }
 
   return (
     <>
-      {selections?.origin && (
+      {selections?.origin?.[0] && (
         <Marker
           draggable={true}
           eventHandlers={{
-            dragend: ({ target }) => dragend("origin", target),
+            dragend: (event) => dragend("origin", event),
           }}
-          position={selections.origin}
+          position={{
+            lat: selections.origin[0],
+            lng: selections.origin[1],
+          }}
           ref={originRef}
           key={"origin"}
           icon={originIcon}
         />
       )}
-      {selections?.destination && (
+      {selections?.destination?.[0] && (
         <Marker
           draggable={true}
           eventHandlers={{
-            dragend: ({ target }) => dragend("destination", target),
+            dragend: (event) => dragend("destination", event),
           }}
-          position={selections.destination}
+          position={{
+            lat: selections.destination[0],
+            lng: selections.destination[1],
+          }}
           ref={destination}
           key={"destination"}
           icon={destinationIcon}

@@ -37,9 +37,10 @@ const Search: React.FC<SearchProps> = ({ setVehicleType }) => {
 
     fetchVehicles();
   }, [inputValue]);
-  const handleVehicleType = (id: number) => {
+  const handleVehicleType = (id: number, name: string) => {
     setVehicleType(id);
-    setInputValue("");
+    setInputValue(name);
+    setVehicle([]);
   };
   return (
     <div className="search position-relative ">
@@ -63,7 +64,9 @@ const Search: React.FC<SearchProps> = ({ setVehicleType }) => {
             <li
               key={element.id}
               className=" cursor-pointer"
-              onClick={() => handleVehicleType(Number(element.id))}
+              onClick={() =>
+                handleVehicleType(Number(element.id), element.name)
+              }
             >
               {element.name}
             </li>

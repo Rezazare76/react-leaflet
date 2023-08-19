@@ -6,7 +6,7 @@ import MapPanel from "../../components/MapPanel/MapPanel";
 import Search from "../../components/Search/Search";
 import Alert from "../../components/Alert/Alert";
 const MapView = () => {
-  const [selections, setSelections] = useState({});
+  const [selections, setSelections] = useState({ origin: [], destination: [] });
   const [vehicleType, setVehicleType] = useState<number | undefined>();
   const [alert, setAlert] = useState<string>("");
   const [isLoading, setIsLoading] = useState(false);
@@ -30,13 +30,13 @@ const MapView = () => {
           body: JSON.stringify({
             userToken: JSON.parse(localStorage.getItem("token") || "")?.token,
             vehicleUserTypeId: vehicleType,
-            source: `${selections.origin.lat}, ${selections.origin.lng}`,
-            destination: `${selections.destination.lat}, ${selections.destination.lng}`,
+            source: `${selections.origin[0]}, ${selections.origin[1]}`,
+            destination: `${selections.destination[0]}, ${selections.destination[1]}`,
           }),
         }
       ).then((response) => response.json());
       if (response.status) {
-        setSelections({});
+        setSelections({ origin: [], destination: [] });
         setVehicleType(undefined);
         setAlert("انجام شد");
         setTimeout(() => {
@@ -60,9 +60,8 @@ const MapView = () => {
       >
         <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
         <MapLocation
-          // positions={[51.505, -0.09]}
           selections={selections}
-          setSelections={setSelections}
+          setSelections={setSelections as never}
         />
       </MapContainer>
       <MapPanel

@@ -10,22 +10,22 @@ const MapPanel: React.FC<MapPanelProps> = ({
   isLoading,
 }) => {
   const state =
-    selections.origin?.lat && selections.destination?.lat && vehicleType;
+    selections.origin?.[0] && selections.destination?.[0] && vehicleType;
   return (
     <section className="map-panel bg-secondary position-fixed p-2 d-flex  flex-column rounded-3-top">
       <span className="d-flex align-items-center text-danger">
         <img src={locationIconRed} alt="location-icon" width="50px" />
         مبدأ :{" "}
-        {selections.origin?.lat
-          ? `${selections.origin.lat}, ${selections.origin.lng}`
+        {selections.origin?.[0]
+          ? `${selections.origin[0]}, ${selections.origin[0]}`
           : ""}
       </span>
 
       <span className="d-flex align-items-center text-success ">
         <img src={locationIconGreen} alt="location-icon" width="50px" />
         مقصد :{" "}
-        {selections.destination?.lat
-          ? `${selections.destination.lat}, ${selections.destination.lng}`
+        {selections.destination?.[0]
+          ? `${selections.destination[0]}, ${selections.destination[0]}`
           : ""}
       </span>
       {children}
@@ -33,7 +33,7 @@ const MapPanel: React.FC<MapPanelProps> = ({
         className={`rounded-3 p-1  ${
           state ? "bg-warning cursor-pointer" : " bg-gray cursor-none-drop"
         }`}
-        onClick={state && sendRequest}
+        onClick={state ? sendRequest : () => {}}
       >
         {isLoading ? "درحال ثبت درخواست..." : "ثبت درخواست"}
       </button>
